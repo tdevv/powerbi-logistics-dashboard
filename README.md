@@ -6,32 +6,44 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 ---
 
+## 🚀 Destaques do Projeto
+
+* 214.033 viagens monitoradas
+* 3.069 veículos analisados
+* 63 clientes atendidos
+* R$ 2,9 bilhões em mercadorias transportadas
+* R$ 203,8 milhões em receita de frete analisada
+* R$ 447,4 milhões em cargas expostas a risco
+* R$ 20,9 milhões em potencial de multas identificadas
+* 95,16% das operações em conformidade
+
+---
+
 ## 📊 Escopo Analítico
 
-### Volume de Dados Analisado
+O projeto foi desenvolvido para fornecer uma visão integrada da operação logística, permitindo monitorar conformidade de carga, utilização dos ativos da frota, riscos operacionais e impactos financeiros decorrentes de sobrecarga.
 
-- 214.033 viagens monitoradas
-- 3.069 veículos únicos analisados
-- 63 clientes únicos atendidos
-- Mais de R$ 2,9 bilhões em mercadorias transportadas
-- Mais de R$ 203 milhões em receita de frete monitorada
+### Engenharia de Dados
 
-### Indicadores Estratégicos
+* Extração e consolidação de dados operacionais via SQL Server
+* Aplicação de regras de negócio para classificação de conformidade
+* Construção de base analítica para consumo em Power BI
+* Estruturação de modelo dimensional para análise de desempenho
 
-- 8+ KPIs operacionais e financeiros
-- Monitoramento de conformidade de carga
-- Controle de sobrecarga por veículo, cliente e filial
-- Análise de desgaste de ativos da frota
-- Estimativa de multas por excesso de peso
-- Avaliação da utilização da capacidade dos veículos
+### Analytics
 
-### Componentes Técnicos
+* Monitoramento de viagens com sobrecarga crítica
+* Análise de exposição financeira a multas
+* Avaliação de desgaste dos ativos da frota
+* Medição de utilização da capacidade dos veículos
+* Identificação de clientes e filiais com maior incidência de risco
 
-- SQL Server para extração e consolidação dos dados
-- Power Query para transformação e tratamento
-- Modelagem dimensional para análise de desempenho
-- Medidas DAX para indicadores de negócio
-- Dashboard executivo e operacional com múltiplas perspectivas de análise
+### Business Intelligence
+
+* Dashboard executivo para acompanhamento estratégico
+* Dashboard operacional para monitoramento da operação
+* Indicadores financeiros e operacionais
+* Navegação interativa com filtros e segmentações
 
 ---
 
@@ -55,13 +67,24 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 O transporte de cargas acima da capacidade permitida pode gerar:
 
-* Multas e penalidades legais;
-* Aumento do desgaste dos ativos;
-* Custos operacionais elevados;
-* Riscos de acidentes;
-* Redução da vida útil da frota.
+* Multas e penalidades legais
+* Aumento do desgaste dos ativos
+* Custos operacionais elevados
+* Riscos de acidentes
+* Redução da vida útil da frota
 
-O projeto foi desenvolvido para fornecer uma visão consolidada dos riscos operacionais e da eficiência logística.
+O projeto foi desenvolvido para fornecer uma visão consolidada dos riscos operacionais, permitindo atuação preventiva e maior eficiência logística.
+
+---
+
+## 📈 Principais Resultados Identificados
+
+* 95,16% das viagens operaram dentro dos limites de conformidade
+* Apenas 4,3% das operações apresentaram sobrecarga crítica
+* Identificação de R$ 447,4 milhões em cargas expostas a risco
+* Estimativa de R$ 20,9 milhões em potenciais multas
+* Monitoramento de mais de R$ 2,9 bilhões em mercadorias transportadas
+* Avaliação da utilização da capacidade de 3.069 veículos
 
 ---
 
@@ -85,10 +108,10 @@ Extração dos dados através de consultas SQL Server.
 
 Tratamento dos dados utilizando Power Query:
 
-* Padronização de campos;
-* Tratamento de valores nulos;
-* Aplicação de regras de negócio;
-* Criação de colunas derivadas.
+* Padronização de campos
+* Tratamento de valores nulos
+* Aplicação de regras de negócio
+* Criação de colunas derivadas
 
 ### Modelagem
 
@@ -123,11 +146,11 @@ Modelo dimensional desenvolvido para análise por:
 
 ## 💡 Principais Insights
 
-* Identificação de filiais com maior incidência de sobrecarga.
-* Mapeamento de clientes com maior risco operacional.
-* Estimativa do impacto financeiro associado às multas.
-* Avaliação da eficiência operacional da frota.
-* Monitoramento do desgaste de pneus relacionado ao excesso de carga.
+* Identificação das filiais com maior incidência de sobrecarga
+* Mapeamento dos clientes com maior exposição a riscos operacionais
+* Estimativa do impacto financeiro associado ao excesso de peso
+* Avaliação da eficiência operacional da frota
+* Monitoramento do desgaste dos ativos em função da utilização
 
 ---
 
@@ -135,56 +158,9 @@ Modelo dimensional desenvolvido para análise por:
 
 A solução permite:
 
-* Identificar operações com excesso de carga.
-* Reduzir exposição a multas e penalidades.
-* Monitorar desgaste prematuro dos ativos.
-* Melhorar a utilização da frota.
-* Apoiar decisões operacionais baseadas em dados.
-* Aumentar a eficiência logística através de indicadores estratégicos.
-
----
-
-## 📂 Estrutura do Projeto
-
-```text
-powerbi-logistics-dashboard
-│
-├── README.md
-├── Gestão de Sobrecarga e Ativos.pbix
-│
-├── sql
-│   ├── consulta_principal.sql
-│   └── explicacao_consulta.md
-│
-├── power_query
-│   └── editor_avancado.txt
-│
-├── docs
-│   └── modelo_dados.png
-│
-└── imagens
-    ├── visao_executiva.jpg
-    ├── visao_operacional.jpg
-    ├── eficiencia_operacional.jpg
-    └── observacao.jpg
-```
-
----
-
-## 👨‍💻 Autor
-
-**Tiago Dias**
-
-Analista de Dados
-
-Tecnologias:
-SQL Server • Power BI • DAX • Power Query • Engenharia de Dados
-
-### 🔗 Contato
-
-LinkedIn: https://www.linkedin.com/in/tiago-dias-365959137/
-
-GitHub: https://github.com/tdevv
-
-```
-```
+* Reduzir exposição a multas e penalidades
+* Identificar operações com excesso de carga
+* Melhorar a utilização da frota
+* Monitorar desgaste prematuro dos ativos
+* Apoiar decisões operacionais baseadas em dados
+* Aumentar a eficiência logística através de indicadores estratégicos
