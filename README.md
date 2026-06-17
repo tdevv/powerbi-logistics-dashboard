@@ -10,15 +10,15 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 ### Visão Executiva de Risco e Conformidade
 
-![Visão Executiva](imagens/visao_executiva.png)
+![Visão Executiva](imagens/visao_executiva.jpg)
 
 ### Visão Operacional por Filial, Cliente e Unidade de Negócio
 
-![Visão Operacional](imagens/visao_operacional.png)
+![Visão Operacional](imagens/visao_operacional.jpg)
 
 ### Eficiência Operacional e Utilização de Ativos
 
-![Eficiência Operacional](imagens/eficiencia_operacional.png)
+![Eficiência Operacional](imagens/eficiencia_operacional.jpg)
 
 ---
 
