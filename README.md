@@ -8,14 +8,12 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 ## 📊 Escopo Analítico
 
-- 100 mil+ registros processados
-- 5 dimensões analíticas
-- 8 KPIs desenvolvidos
-- 3 páginas de dashboard
-- SQL Server como fonte de dados
-- Power Query para transformação
-- DAX para construção de métricas
-- Modelo dimensional para análise
+* Monitoramento de operações logísticas e conformidade de carga
+* Análise de utilização e desempenho dos ativos da frota
+* Avaliação de riscos operacionais relacionados à sobrecarga
+* Construção de indicadores estratégicos para apoio à tomada de decisão
+* Desenvolvimento de dashboard executivo e operacional
+* Utilização de SQL Server, Power BI, DAX e Power Query
 
 ---
 
@@ -115,6 +113,19 @@ Modelo dimensional desenvolvido para análise por:
 
 ---
 
+## 🎯 Impacto para o Negócio
+
+A solução permite:
+
+* Identificar operações com excesso de carga.
+* Reduzir exposição a multas e penalidades.
+* Monitorar desgaste prematuro dos ativos.
+* Melhorar a utilização da frota.
+* Apoiar decisões operacionais baseadas em dados.
+* Aumentar a eficiência logística através de indicadores estratégicos.
+
+---
+
 ## 📂 Estrutura do Projeto
 
 ```text
@@ -124,7 +135,8 @@ powerbi-logistics-dashboard
 ├── Gestão de Sobrecarga e Ativos.pbix
 │
 ├── sql
-│   └── consulta_principal.sql
+│   ├── consulta_principal.sql
+│   └── explicacao_consulta.md
 │
 ├── power_query
 │   └── editor_avancado.txt
@@ -133,9 +145,10 @@ powerbi-logistics-dashboard
 │   └── modelo_dados.png
 │
 └── imagens
-    ├── visao_executiva.png
-    ├── visao_operacional.png
-    └── eficiencia_operacional.png
+    ├── visao_executiva.jpg
+    ├── visao_operacional.jpg
+    ├── eficiencia_operacional.jpg
+    └── observacao.jpg
 ```
 
 ---
@@ -148,3 +161,12 @@ Analista de Dados
 
 Tecnologias:
 SQL Server • Power BI • DAX • Power Query • Engenharia de Dados
+
+### 🔗 Contato
+
+LinkedIn: https://www.linkedin.com/in/tiago-dias-365959137/
+
+GitHub: https://github.com/tdevv
+
+```
+```
