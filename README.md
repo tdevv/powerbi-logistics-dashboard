@@ -6,6 +6,19 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 ---
 
+## 📊 Escopo Analítico
+
+- 100 mil+ registros processados
+- 5 dimensões analíticas
+- 8 KPIs desenvolvidos
+- 3 páginas de dashboard
+- SQL Server como fonte de dados
+- Power Query para transformação
+- DAX para construção de métricas
+- Modelo dimensional para análise
+
+---
+
 ## 📊 Visão Geral do Dashboard
 
 ### Visão Executiva de Risco e Conformidade
