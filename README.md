@@ -8,12 +8,30 @@ Desenvolver uma solução analítica para monitorar operações logísticas, ide
 
 ## 📊 Escopo Analítico
 
-* Monitoramento de operações logísticas e conformidade de carga
-* Análise de utilização e desempenho dos ativos da frota
-* Avaliação de riscos operacionais relacionados à sobrecarga
-* Construção de indicadores estratégicos para apoio à tomada de decisão
-* Desenvolvimento de dashboard executivo e operacional
-* Utilização de SQL Server, Power BI, DAX e Power Query
+### Volume de Dados Analisado
+
+- 214.033 viagens monitoradas
+- 3.069 veículos únicos analisados
+- 63 clientes únicos atendidos
+- Mais de R$ 2,9 bilhões em mercadorias transportadas
+- Mais de R$ 203 milhões em receita de frete monitorada
+
+### Indicadores Estratégicos
+
+- 8+ KPIs operacionais e financeiros
+- Monitoramento de conformidade de carga
+- Controle de sobrecarga por veículo, cliente e filial
+- Análise de desgaste de ativos da frota
+- Estimativa de multas por excesso de peso
+- Avaliação da utilização da capacidade dos veículos
+
+### Componentes Técnicos
+
+- SQL Server para extração e consolidação dos dados
+- Power Query para transformação e tratamento
+- Modelagem dimensional para análise de desempenho
+- Medidas DAX para indicadores de negócio
+- Dashboard executivo e operacional com múltiplas perspectivas de análise
 
 ---
 
