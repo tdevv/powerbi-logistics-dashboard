@@ -1,0 +1,158 @@
+let
+    Fonte = PowerPlatform.Dataflows(null),
+    Workspaces = Fonte{[Id="Workspaces"]}[Data],
+    #"892bdb9a-a3cc-4903-b25f-1dd8e467c0a6" = Workspaces{[workspaceId="892bdb9a-a3cc-4903-b25f-1dd8e467c0a6"]}[Data],
+    #"092a2f19-ce33-4932-9767-c79d40a128a6" = #"892bdb9a-a3cc-4903-b25f-1dd8e467c0a6"{[dataflowId="092a2f19-ce33-4932-9767-c79d40a128a6"]}[Data],
+    BASE_ = #"092a2f19-ce33-4932-9767-c79d40a128a6"{[entity="BASE",version=""]}[Data],
+    #"Colunas Renomeadas" = Table.RenameColumns(BASE_,{{"FAIXA_DESGASTE", "Faixa desgaste"}}),
+    #"Coluna Condicional Adicionada" = Table.AddColumn(#"Colunas Renomeadas", "Ordem_Status", each if [STATUS_CARGA] = "Conformidade" then 1 else if [STATUS_CARGA] = "Tolerável" then 2 else if [STATUS_CARGA] = "Sobrecarga" then 3 else 4),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Coluna Condicional Adicionada",{{"Ordem_Status", Int64.Type}})
+in
+    #"Tipo Alterado"
+
+
+let
+    Fonte = BASE,
+    #"Consultas Mescladas" = Table.NestedJoin(Fonte, {"COOPERADO"}, DIM_COOPERADO, {"COOPERADO"}, "DIM_COOPERADO", JoinKind.LeftOuter),
+    #"DIM_COOPERADO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas", "DIM_COOPERADO", {"ID_COOPERADO"}, {"ID_COOPERADO"}),
+    #"Consultas Mescladas1" = Table.NestedJoin(#"DIM_COOPERADO Expandido", {"CLIENTE"}, DIM_CLIENTE, {"CLIENTE"}, "DIM_CLIENTE", JoinKind.LeftOuter),
+    #"DIM_CLIENTE Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas1", "DIM_CLIENTE", {"ID_CLIENTE"}, {"ID_CLIENTE"}),
+    #"Consultas Mescladas2" = Table.NestedJoin(#"DIM_CLIENTE Expandido", {"FILIAL"}, DIM_FILIAL, {"FILIAL"}, "DIM_FILIAL", JoinKind.LeftOuter),
+    #"DIM_FILIAL Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas2", "DIM_FILIAL", {"ID_FILIAL"}, {"ID_FILIAL"}),
+    #"Consultas Mescladas3" = Table.NestedJoin(#"DIM_FILIAL Expandido", {"FILIAL_FISCAL"}, DIM_FILIAL_FISCAL, {"FILIAL_FISCAL"}, "DIM_FILIAL_FISCAL", JoinKind.LeftOuter),
+    #"DIM_FILIAL_FISCAL Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas3", "DIM_FILIAL_FISCAL", {"ID_FILIAL_FISCAL"}, {"ID_FILIAL_FISCAL"}),
+    #"Consultas Mescladas4" = Table.NestedJoin(#"DIM_FILIAL_FISCAL Expandido", {"ORIGEM"}, DIM_ORIGEM, {"ORIGEM"}, "DIM_ORIGEM", JoinKind.LeftOuter),
+    #"DIM_ORIGEM Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas4", "DIM_ORIGEM", {"ID_ORIGEM"}, {"ID_ORIGEM"}),
+    #"Consultas Mescladas5" = Table.NestedJoin(#"DIM_ORIGEM Expandido", {"DESTINO"}, DIM_DESTINO, {"DESTINO"}, "DIM_DESTINO", JoinKind.LeftOuter),
+    #"DIM_DESTINO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas5", "DIM_DESTINO", {"ID_DESTINO"}, {"ID_DESTINO"}),
+    #"Consultas Mescladas6" = Table.NestedJoin(#"DIM_DESTINO Expandido", {"VEICULO"}, DIM_VEICULO, {"VEICULO"}, "DIM_VEICULO", JoinKind.LeftOuter),
+    #"DIM_VEICULO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas6", "DIM_VEICULO", {"ID_VEICULO"}, {"ID_VEICULO"}),
+    #"Consultas Mescladas7" = Table.NestedJoin(#"DIM_VEICULO Expandido", {"TIPO_VEICULO"}, DIM_TIPO_VEICULO, {"TIPO_VEICULO"}, "DIM_TIPO_VEICULO", JoinKind.LeftOuter),
+    #"DIM_TIPO_VEICULO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas7", "DIM_TIPO_VEICULO", {"ID_TIPO_VEICULO"}, {"ID_TIPO_VEICULO"}),
+    #"Consultas Mescladas8" = Table.NestedJoin(#"DIM_TIPO_VEICULO Expandido", {"UNIDADE_NEGOCIO"}, DIM_UNIDADE_NEGOCIO, {"UNIDADE_NEGOCIO"}, "DIM_UNIDADE_NEGOCIO", JoinKind.LeftOuter),
+    #"DIM_UNIDADE_NEGOCIO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas8", "DIM_UNIDADE_NEGOCIO", {"ID_UNIDADE_NEGOCIO"}, {"ID_UNIDADE_NEGOCIO"}),
+    #"Consultas Mescladas9" = Table.NestedJoin(#"DIM_UNIDADE_NEGOCIO Expandido", {"CENTRO_CUSTO"}, DIM_CENTRO_CUSTO, {"CENTRO_CUSTO"}, "DIM_CENTRO_CUSTO", JoinKind.LeftOuter),
+    #"DIM_CENTRO_CUSTO Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas9", "DIM_CENTRO_CUSTO", {"ID_CENTRO_CUSTO"}, {"ID_CENTRO_CUSTO"}),
+    #"Consultas Mescladas10" = Table.NestedJoin(#"DIM_CENTRO_CUSTO Expandido", {"Faixa desgaste"}, DIM_FAIXA_DESGASTE, {"Faixa desgaste"}, "DIM_FAIXA_DESGASTE", JoinKind.LeftOuter),
+    #"DIM_FAIXA_DESGASTE Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas10", "DIM_FAIXA_DESGASTE", {"ID_FAIXA_DESGASTE"}, {"ID_FAIXA_DESGASTE"}),
+    #"Consultas Mescladas11" = Table.NestedJoin(#"DIM_FAIXA_DESGASTE Expandido", {"STATUS_CARGA"}, DIM_STATUS_CARGA, {"STATUS_CARGA"}, "DIM_STATUS_CARGA", JoinKind.LeftOuter),
+    #"DIM_STATUS_CARGA Expandido" = Table.ExpandTableColumn(#"Consultas Mescladas11", "DIM_STATUS_CARGA", {"ID_STATUS_CARGA"}, {"ID_STATUS_CARGA"}),
+    #"Colunas Removidas" = Table.RemoveColumns(#"DIM_STATUS_CARGA Expandido",{"COOPERADO", "CLIENTE", "FILIAL", "FILIAL_FISCAL", "ORIGEM", "DESTINO", "VEICULO", "TIPO_VEICULO", "CENTRO_CUSTO", "UNIDADE_NEGOCIO", "Faixa desgaste", "STATUS_CARGA"})
+in
+    #"Colunas Removidas"
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"COOPERADO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_COOPERADO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"CLIENTE"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_CLIENTE", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+let
+    Fonte = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText("bVBLDoMgEL2KYW1SCmq6nRJSSRGacXBjvP81CpQmk+jisXifeTPsuzCwuDBD7PRtEL1QGVPGIKUUR8/0pyNM5l20jHsxKnVyUTSRjZnOhjZElyGyPKwK0RJkbix8yWvWsIGPPBiS91WasTXWxcYWWCL9N6n4sR9YV3hZh5FnVMskct4RoOPqo4kbhKueTHdoA4G/VJNh36HrNccX", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [VEICULO = _t, EIXOS = _t, PNEUS = _t, PESO_MAX = _t]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(Fonte,{{"VEICULO", type text}, {"EIXOS", Int64.Type}, {"PNEUS", Int64.Type}}),
+    #"Linhas Classificadas" = Table.Sort(#"Tipo Alterado",{{"VEICULO", Order.Ascending}}),
+    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Linhas Classificadas",{{"PESO_MAX", Int64.Type}})
+in
+    #"Tipo Alterado1"
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"FILIAL"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_FILIAL", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"FILIAL_FISCAL"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_FILIAL_FISCAL", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"ORIGEM"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_ORIGEM", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"DESTINO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_DESTINO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"VEICULO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_VEICULO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"TIPO_VEICULO", "PESO_MAX", "EIXOS", "PNEUS"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_TIPO_VEICULO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"CENTRO_CUSTO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_CENTRO_CUSTO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"UNIDADE_NEGOCIO"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_UNIDADE_NEGOCIO", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"Faixa desgaste"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_FAIXA_DESGASTE", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
+
+let
+    Fonte = BASE,
+    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"STATUS_CARGA"}),
+    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas"),
+    #"Índice Adicionado" = Table.AddIndexColumn(#"Duplicatas Removidas", "ID_STATUS_CARGA", 1, 1, Int64.Type)
+in
+    #"Índice Adicionado"
