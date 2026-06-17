@@ -1,10 +1,28 @@
-# Dashboard de Gestão de Sobrecarga e Ativos
+# 🚚 Dashboard de Gestão de Sobrecarga e Ativos
 
-## Objetivo
+## 📌 Objetivo
 
 Desenvolver uma solução analítica para monitorar operações logísticas, identificar riscos relacionados à sobrecarga de veículos e apoiar a tomada de decisão através de indicadores operacionais e financeiros.
 
-## Problema de Negócio
+---
+
+## 📊 Visão Geral do Dashboard
+
+### Visão Executiva de Risco e Conformidade
+
+![Visão Executiva](imagens/visao_executiva.png)
+
+### Visão Operacional por Filial, Cliente e Unidade de Negócio
+
+![Visão Operacional](imagens/visao_operacional.png)
+
+### Eficiência Operacional e Utilização de Ativos
+
+![Eficiência Operacional](imagens/eficiencia_operacional.png)
+
+---
+
+## 🎯 Problema de Negócio
 
 O transporte de cargas acima da capacidade permitida pode gerar:
 
@@ -14,9 +32,11 @@ O transporte de cargas acima da capacidade permitida pode gerar:
 * Riscos de acidentes;
 * Redução da vida útil da frota.
 
-O objetivo do projeto foi criar uma visão consolidada para monitorar conformidade, riscos e eficiência operacional.
+O projeto foi desenvolvido para fornecer uma visão consolidada dos riscos operacionais e da eficiência logística.
 
-## Tecnologias Utilizadas
+---
+
+## 🛠 Tecnologias Utilizadas
 
 * SQL Server
 * Power BI
@@ -24,32 +44,42 @@ O objetivo do projeto foi criar uma visão consolidada para monitorar conformida
 * Power Query
 * Modelagem Dimensional
 
-## Processo de Desenvolvimento
+---
+
+## 🔄 Processo de Desenvolvimento
 
 ### Extração
 
-Dados extraídos do SQL Server através de consultas analíticas.
+Extração dos dados através de consultas SQL Server.
 
 ### Transformação
 
-Tratamento dos dados realizado no Power Query:
+Tratamento dos dados utilizando Power Query:
 
 * Padronização de campos;
-* Tratamento de nulos;
-* Criação de regras de negócio;
-* Cálculo de indicadores logísticos.
+* Tratamento de valores nulos;
+* Aplicação de regras de negócio;
+* Criação de colunas derivadas.
 
 ### Modelagem
 
-Construção de modelo analítico para análise de:
+Modelo dimensional desenvolvido para análise por:
 
-* Filiais;
-* Clientes;
-* Veículos;
-* Viagens;
-* Unidades de Negócio.
+* Filial
+* Cliente
+* Veículo
+* Viagem
+* Unidade de Negócio
 
-## Indicadores Desenvolvidos
+---
+
+## 🏗 Modelo de Dados
+
+![Modelo de Dados](docs/modelo_dados.png)
+
+---
+
+## 📈 Indicadores Desenvolvidos
 
 * Total de Viagens Monitoradas
 * Valor Total da Carga Transportada
@@ -60,37 +90,48 @@ Construção de modelo analítico para análise de:
 * Índice de Desgaste de Pneus
 * Aproveitamento de Capacidade dos Veículos
 
-## Principais Análises
+---
 
-### Visão Operacional
+## 💡 Principais Insights
 
-Monitoramento por:
+* Identificação de filiais com maior incidência de sobrecarga.
+* Mapeamento de clientes com maior risco operacional.
+* Estimativa do impacto financeiro associado às multas.
+* Avaliação da eficiência operacional da frota.
+* Monitoramento do desgaste de pneus relacionado ao excesso de carga.
 
-* Filial
-* Cliente
-* Unidade de Negócio
-* Tipo de Veículo
+---
 
-### Gestão de Risco
+## 📂 Estrutura do Projeto
 
-* Sobrecarga Crítica
-* Sobrecarga Tolerável
-* Conformidade Operacional
-* Matriz de Risco
+```text
+powerbi-logistics-dashboard
+│
+├── README.md
+├── Gestão de Sobrecarga e Ativos.pbix
+│
+├── sql
+│   └── consulta_principal.sql
+│
+├── power_query
+│   └── editor_avancado.txt
+│
+├── docs
+│   └── modelo_dados.png
+│
+└── imagens
+    ├── visao_executiva.png
+    ├── visao_operacional.png
+    └── eficiencia_operacional.png
+```
 
-### Gestão de Ativos
+---
 
-* Utilização da Frota
-* Desgaste de Pneus
-* Capacidade Utilizada
-* Eficiência Operacional
+## 👨‍💻 Autor
 
-## Resultado
+**Tiago Dias**
 
-O dashboard permite identificar rapidamente operações com potencial de risco, reduzir custos relacionados a multas e melhorar a gestão dos ativos logísticos.
-
-## Autor
-
-Tiago Dias
 Analista de Dados
-SQL Server | Power BI | Engenharia de Dados
+
+Tecnologias:
+SQL Server • Power BI • DAX • Power Query • Engenharia de Dados
